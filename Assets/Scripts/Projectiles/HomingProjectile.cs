@@ -16,7 +16,6 @@ public class HomingProjectile : Projectile
 
     public override void Initialise(Transform playerTransform)
     {
-        Debug.Log(playerTransform);
         playerPos = playerTransform;
     }
 
@@ -26,7 +25,7 @@ public class HomingProjectile : Projectile
 
         float angle = Mathf.Atan2(direction.y, direction.x);
 
-        rb.linearVelocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * speed;
+        rb.linearVelocity = direction * speed;
 
         rb.MoveRotation((angle * Mathf.Rad2Deg) - 90f);
     }

@@ -14,5 +14,5 @@ public abstract class AttackPattern : IAttackPattern
     protected ProjectileList currentProjectile;
     protected ObjectPooler objectPool;
 
-    public abstract void Attack(Vector2 enemyPos, GameObject projectile, ObjectPooler objectPool);
+    public abstract void Attack(Transform enemyPos, GameObject projectile);
 }

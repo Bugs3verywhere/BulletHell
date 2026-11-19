@@ -16,7 +16,7 @@ public class SpiralAttack : AttackPattern
         speed = 10;
     }
 
-    public override void Attack(Vector2 enemyPos, GameObject projectile, ObjectPooler objectPool)
+    public override void Attack(Transform enemyPos, GameObject projectile)
     {
         if (attacksPerformed < attacks)
         {
@@ -31,7 +31,7 @@ public class SpiralAttack : AttackPattern
             {
                 angle += rotation;
                 attackTimer = 0;
-                GameObject newProjectile = objectPool.GetFromPool();
+                GameObject newProjectile = objectPool.GetFromPool(enemyPos);
                 Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
                 rb.linearVelocity = new Vector2(vectorX, vectorY);
                 attacksPerformed++;

@@ -7,15 +7,14 @@ public class ObjectPooler
 
     private ProjectileFactory projectileFactory;
     private Transform playerTransform;
+    private Transform enemyPos;
     private GameObject projectile;
     [SerializeField] private int initialPoolSize;
 
-    public ObjectPooler(ProjectileFactory projectileFactory, GameObject projectile, int initialPoolSize, Transform playerTransform)
+    public ObjectPooler(ProjectileFactory projectileFactory, int initialPoolSize)
     {
         this.projectileFactory = projectileFactory;
-        this.projectile = projectile;
         this.initialPoolSize = initialPoolSize;
-        this.playerTransform = playerTransform;
 
         availableProjectiles = new List<GameObject>();
 
@@ -26,7 +25,7 @@ public class ObjectPooler
     {
         for (int i = 0; i < initialPoolSize; i++)
         {
-            GameObject pooledObject = projectileFactory.Create(projectile, playerTransform);
+            GameObject pooledObject = projectileFactory.Create();
             availableProjectiles.Add(pooledObject);
         }
     }
@@ -50,7 +49,7 @@ public class ObjectPooler
 
         if (newProjectile == null)
         {
-            newProjectile = projectileFactory.Create(projectile, playerTransform);
+            newProjectile = projectileFactory.Create();
         }
 
         Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();

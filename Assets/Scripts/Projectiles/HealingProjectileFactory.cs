@@ -2,9 +2,18 @@ using UnityEngine;
 
 public class HealingProjectileFactory : ProjectileFactory
 {
-    public override GameObject Create(GameObject prefab, Transform playerTransform)
+    private GameObject prefab;
+    private Transform enemyPos;
+
+    public HealingProjectileFactory(GameObject prefab, Transform enemyPos)
     {
-        GameObject newProjectile = Object.Instantiate(prefab);
+        this.prefab = prefab;
+        this.enemyPos = enemyPos;
+    }
+
+    public override GameObject Create()
+    {
+        GameObject newProjectile = Object.Instantiate(prefab, enemyPos.position, Quaternion.identity);
         newProjectile.SetActive(false);
         return newProjectile;
     }
