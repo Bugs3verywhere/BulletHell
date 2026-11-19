@@ -462,6 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameController
   standard: {fileID: 1892588036906796207, guid: df8348df71840994c84b3d2285316fd6, type: 3}
   homing: {fileID: 2823664464626277433, guid: 671da6461005e9e4781de96dad301496, type: 3}
+  healing: {fileID: 1892588036906796207, guid: df8348df71840994c84b3d2285316fd6, type: 3}
 --- !u!4 &969271027
 Transform:
   m_ObjectHideFlags: 0

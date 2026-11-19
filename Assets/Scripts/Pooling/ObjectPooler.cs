@@ -30,4 +30,42 @@ public class ObjectPooler
             availableProjectiles.Add(pooledObject);
         }
     }
+
+    public GameObject GetFromPool()
+    {
+        GameObject newProjectile = null;
+
+        for (int i = 0; i < availableProjectiles.Count; i++)
+        {
+            newProjectile = availableProjectiles[i];
+
+            if (!newProjectile.activeSelf)
+            {
+                availableProjectiles.Remove(newProjectile);
+                break;
+            }
+
+            newProjectile = null;
+        }
+
+        if (newProjectile == null)
+        {
+            newProjectile = projectileFactory.Create(projectile, playerTransform);
+        }
+
+        Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
+        rb.linearVelocity = new Vector2(0, 0);
+        newProjectile.SetActive(true);
+
+        return newProjectile;
+    }
+
+    public void ReturnProjectile(GameObject projectile)
+    {
+        if (!availableProjectiles.Contains(projectile))
+        {
+            projectile.SetActive(false);
+            availableProjectiles.Add(projectile);
+        }
+    }
 }

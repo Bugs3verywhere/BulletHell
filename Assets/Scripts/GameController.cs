@@ -6,11 +6,12 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private GameObject standard;
     [SerializeField] private GameObject homing;
+    [SerializeField] private GameObject healing;
     private GameObject player;
 
     void Start()
     {
         player = GameObject.Find("Player");
-        attackManager = new AttackManager(player.transform, standard, homing);
+        attackManager = new AttackManager(player.transform, standard, homing, healing);
     }
 }

@@ -16,7 +16,7 @@ public class HomingProjectileFactory : ProjectileFactory
         newProjectile.GetComponent<HomingProjectile>();
         HomingProjectile homingProjectile = newProjectile.GetComponent<HomingProjectile>();
         homingProjectile.Initialise(playerTransform);
-        newProjectile.SetActive(true);
+        newProjectile.SetActive(false);
         return newProjectile;
     }
 }
