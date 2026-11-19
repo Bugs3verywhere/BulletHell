@@ -2,5 +2,7 @@ using UnityEngine;
 
 public enum AttackPatternList
 {
-    Spiral
+    Spiral,
+    Fan,
+    Targeted
 }

@@ -28,8 +28,8 @@ public class SpiralAttack : AttackPattern
             {
                 angle += rotation;
                 attackTimer = 0;
-                GameObject newProjecitle = Object.Instantiate(projectile, enemyPos, Quaternion.identity);
-                Rigidbody2D rb = newProjecitle.GetComponent<Rigidbody2D>();
+                GameObject newProjectile = Object.Instantiate(projectile, enemyPos, Quaternion.identity);
+                Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
                 rb.linearVelocity = new Vector2(vectorX, vectorY);
                 attacksPerformed++;
             }
