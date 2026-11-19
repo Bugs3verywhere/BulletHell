@@ -8,10 +8,12 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject homing;
     [SerializeField] private GameObject healing;
     private GameObject player;
+    private GameObject enemy;
 
     void Start()
     {
         player = GameObject.Find("Player");
-        attackManager = new AttackManager(player.transform, standard, homing, healing);
+        enemy = GameObject.Find("Enemy");
+        attackManager = new AttackManager(player.transform, enemy, standard, homing, healing);
     }
 }

@@ -6,10 +6,7 @@ public class SpiralAttack : AttackPattern
     public SpiralAttack(ObjectPooler objectPool)
     {
         this.objectPool = objectPool;
-    }
 
-    public override void Initialise()
-    {
         attacksPerformed = 0;
         attacks = 36;
         angle = 10;
