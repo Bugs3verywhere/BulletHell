@@ -30,7 +30,7 @@ public class ObjectPooler
         }
     }
 
-    public GameObject GetFromPool(ProjectileList projectileType)
+    public GameObject GetFromPool(ProjectileList projectileType, Vector2 position)
     {
         Stack<GameObject> gettableObjects = availableProjectiles[projectileType];
 
@@ -44,6 +44,7 @@ public class ObjectPooler
             newProjectile = factories[projectileType].Create();
         }
 
+        newProjectile.transform.position = position;
         newProjectile.GetComponent<Projectile>().InitialiseReturn(() => ReturnProjectile(projectileType, newProjectile));
         newProjectile.SetActive(true);
         return newProjectile;

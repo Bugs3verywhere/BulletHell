@@ -3,39 +3,36 @@ using UnityEngine;
 public class SpiralAttack : AttackPattern
 {
 
-    public SpiralAttack(ObjectPooler objectPool)
+
+    public SpiralAttack(ObjectPooler objectPool, float projectileSpeed)
     {
         this.objectPool = objectPool;
+        this.projectileSpeed = projectileSpeed;
 
         attacksPerformed = 0;
         attacks = 36;
         angle = 10;
         rotation = 10;
-        attackTime = 0.1f;
-        attackTimer = 0;
-        speed = 10;
+        isFinished = false;
     }
 
-    public override void Attack(Transform enemyPos, GameObject projectile)
+    public override void Attack(Transform enemyPos, ProjectileList projectileType)
     {
         if (attacksPerformed < attacks)
         {
             vectorX = 0;
             vectorY = 0;
-            attackTimer += Time.deltaTime;
 
-            vectorX = Mathf.Cos(angle * Mathf.Deg2Rad) * speed;
-            vectorY = Mathf.Sin(angle * Mathf.Deg2Rad) * speed;
+            vectorX = Mathf.Cos(angle * Mathf.Deg2Rad) * projectileSpeed;
+            vectorY = Mathf.Sin(angle * Mathf.Deg2Rad) * projectileSpeed;
 
-            if (attackTimer >= attackTime)
-            {
-                angle += rotation;
-                attackTimer = 0;
-                GameObject newProjectile = objectPool.GetFromPool(ProjectileList.Standard);
-                Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
-                rb.linearVelocity = new Vector2(vectorX, vectorY);
-                attacksPerformed++;
-            }
+            angle += rotation;
+            GameObject newProjectile = objectPool.GetFromPool(projectileType, enemyPos.position);
+            Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
+            rb.linearVelocity = new Vector2(vectorX, vectorY);
+            attacksPerformed++;
         }
+        else
+            isFinished = true;
     }
 }

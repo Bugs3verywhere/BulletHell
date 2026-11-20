@@ -3,17 +3,15 @@ using UnityEngine;
 public class HealingProjectileFactory : ProjectileFactory
 {
     private GameObject prefab;
-    private Transform enemyPos;
 
-    public HealingProjectileFactory(GameObject prefab, Transform enemyPos)
+    public HealingProjectileFactory(GameObject prefab)
     {
         this.prefab = prefab;
-        this.enemyPos = enemyPos;
     }
 
     public override GameObject Create()
     {
-        GameObject newProjectile = Object.Instantiate(prefab, enemyPos.position, Quaternion.identity);
+        GameObject newProjectile = Object.Instantiate(prefab);
         newProjectile.SetActive(false);
         return newProjectile;
     }

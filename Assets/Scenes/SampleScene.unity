@@ -173,6 +173,8 @@ GameObject:
   m_Component:
   - component: {fileID: 293268556}
   - component: {fileID: 293268555}
+  - component: {fileID: 293268557}
+  - component: {fileID: 293268558}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -254,6 +256,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &293268557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293268553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1d7fb6ee5acf043a5b19120446dbab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+--- !u!114 &293268558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293268553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4cd67cc9a975fe41a1edbefdf042a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AngerStateManager
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,9 +530,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59fbbb4779a65fe44b13e2e4a9397f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
+  angerManager: {fileID: 0}
   standard: {fileID: 1892588036906796207, guid: df8348df71840994c84b3d2285316fd6, type: 3}
   homing: {fileID: 2823664464626277433, guid: 671da6461005e9e4781de96dad301496, type: 3}
   healing: {fileID: 1892588036906796207, guid: df8348df71840994c84b3d2285316fd6, type: 3}
+  player: {fileID: 1507661255}
 --- !u!4 &969271027
 Transform:
   m_ObjectHideFlags: 0

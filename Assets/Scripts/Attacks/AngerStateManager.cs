@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class AngerStateManager : MonoBehaviour
 {
-    AngerState currentState;
-    AngerState standardState = new StandardAngerState();
+    public ObjectPooler objectPooler;
+    private AngerState currentState;
+    private AngerState standardState = new StandardAngerState();
 
-    void Start()
+    public void Initialise(ObjectPooler pool)
     {
+        objectPooler = pool;
         currentState = standardState;
         currentState.EnterState(this);
     }
