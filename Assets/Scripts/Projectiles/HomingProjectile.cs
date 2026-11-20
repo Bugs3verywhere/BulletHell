@@ -14,7 +14,7 @@ public class HomingProjectile : Projectile
         rb = homingProjectile.GetComponent<Rigidbody2D>();
     }
 
-    public override void Initialise(Transform playerTransform)
+    public override void InitialiseProjectile(Transform playerTransform)
     {
         playerPos = playerTransform;
     }

@@ -3,68 +3,56 @@ using UnityEngine;
 
 public class ObjectPooler
 {
-    private List<GameObject> availableProjectiles;
-
+    private Dictionary<ProjectileList, ProjectileFactory> factories;
+    private Dictionary<ProjectileList, Stack<GameObject>> availableProjectiles;
     private ProjectileFactory projectileFactory;
     private Transform playerTransform;
     private Transform enemyPos;
     private GameObject projectile;
     [SerializeField] private int initialPoolSize;
 
-    public ObjectPooler(ProjectileFactory projectileFactory, int initialPoolSize)
+    public ObjectPooler(Dictionary<ProjectileList, ProjectileFactory> factories, int initialPoolSize)
     {
-        this.projectileFactory = projectileFactory;
-        this.initialPoolSize = initialPoolSize;
+        this.factories = factories;
+        availableProjectiles = new Dictionary<ProjectileList, Stack<GameObject>>();
 
-        availableProjectiles = new List<GameObject>();
-
-        InitialPool();
-    }
-
-    private void InitialPool()
-    {
-        for (int i = 0; i < initialPoolSize; i++)
+        foreach (KeyValuePair<ProjectileList, ProjectileFactory> entry in factories)
         {
-            GameObject pooledObject = projectileFactory.Create();
-            availableProjectiles.Add(pooledObject);
-        }
-    }
+            ProjectileList projectileType = entry.Key;
+            ProjectileFactory factory = entry.Value;
 
-    public GameObject GetFromPool()
-    {
-        GameObject newProjectile = null;
+            availableProjectiles[projectileType] = new Stack<GameObject>();
 
-        for (int i = 0; i < availableProjectiles.Count; i++)
-        {
-            newProjectile = availableProjectiles[i];
-
-            if (!newProjectile.activeSelf)
+            for (int i = 0; i < initialPoolSize; i++)
             {
-                availableProjectiles.Remove(newProjectile);
-                break;
+                availableProjectiles[projectileType].Push(factory.Create());
             }
-
-            newProjectile = null;
         }
-
-        if (newProjectile == null)
-        {
-            newProjectile = projectileFactory.Create();
-        }
-
-        Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
-        rb.linearVelocity = new Vector2(0, 0);
-        newProjectile.SetActive(true);
-
-        return newProjectile;
     }
 
-    public void ReturnProjectile(GameObject projectile)
+    public GameObject GetFromPool(ProjectileList projectileType)
     {
-        if (!availableProjectiles.Contains(projectile))
+        Stack<GameObject> gettableObjects = availableProjectiles[projectileType];
+
+        GameObject newProjectile;
+        if (gettableObjects.Count > 0)
         {
-            projectile.SetActive(false);
-            availableProjectiles.Add(projectile);
+            newProjectile = gettableObjects.Pop();
         }
+        else
+        {
+            newProjectile = factories[projectileType].Create();
+        }
+
+        newProjectile.GetComponent<Projectile>().InitialiseReturn(() => ReturnProjectile(projectileType, newProjectile));
+        newProjectile.SetActive(true);
+        return newProjectile;
+
+    }
+
+    public void ReturnProjectile(ProjectileList projectileType, GameObject returnedBullet)
+    {
+        returnedBullet.SetActive(false);
+        availableProjectiles[projectileType].Push(returnedBullet);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -7,21 +8,19 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject standard;
     [SerializeField] private GameObject homing;
     [SerializeField] private GameObject healing;
-    private ObjectPooler standardPool;
-    private ObjectPooler homingPool;
-    private ObjectPooler healingPool;
-    private ProjectileFactory standardFactory;
-    private ProjectileFactory homingFactory;
-    private ProjectileFactory healingFactory;
+    private Dictionary<ProjectileList, ProjectileFactory> factories;
+    private ObjectPooler objectPooler;
     private GameObject player;
     private GameObject enemy;
 
     void Start()
     {
-        standardFactory = new StandardProjectileFactory(standard, enemy.transform);
-        homingFactory = new HomingProjectileFactory(homing, enemy.transform, player.transform);
-        healingFactory = new HealingProjectileFactory(healing, enemy.transform);
+        factories = new Dictionary<ProjectileList, ProjectileFactory> {
+            { ProjectileList.Standard, new StandardProjectileFactory(standard, enemy.transform) },
+            { ProjectileList.Homing, new HomingProjectileFactory(homing, enemy.transform, player.transform) },
+            { ProjectileList.Healing, new HealingProjectileFactory(healing, enemy.transform) } };
 
+        objectPooler = new ObjectPooler(factories, 128);
         player = GameObject.Find("Player");
         enemy = GameObject.Find("Enemy");
     }

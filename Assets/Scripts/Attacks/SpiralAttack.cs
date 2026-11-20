@@ -31,7 +31,7 @@ public class SpiralAttack : AttackPattern
             {
                 angle += rotation;
                 attackTimer = 0;
-                GameObject newProjectile = objectPool.GetFromPool(enemyPos);
+                GameObject newProjectile = objectPool.GetFromPool(ProjectileList.Standard);
                 Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
                 rb.linearVelocity = new Vector2(vectorX, vectorY);
                 attacksPerformed++;

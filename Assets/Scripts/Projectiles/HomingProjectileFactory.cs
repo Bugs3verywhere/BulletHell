@@ -18,7 +18,7 @@ public class HomingProjectileFactory : ProjectileFactory
         GameObject newProjectile = Object.Instantiate(prefab, enemyPos.position, Quaternion.identity);
         newProjectile.GetComponent<HomingProjectile>();
         HomingProjectile homingProjectile = newProjectile.GetComponent<HomingProjectile>();
-        homingProjectile.Initialise(playerTransform);
+        homingProjectile.InitialiseProjectile(playerTransform);
         newProjectile.SetActive(false);
         return newProjectile;
     }

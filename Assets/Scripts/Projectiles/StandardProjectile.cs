@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class StandardProjectile : Projectile
 {
-    public override void Initialise(Transform playerTransform)
+    public override void InitialiseProjectile(Transform playerTransform)
     {
 
     }
