@@ -3,8 +3,9 @@ using System;
 
 public abstract class Projectile : MonoBehaviour
 {
+    protected float power;
     protected float maxLife;
-    protected float lifeTimer = 0f;
+    public float lifeTimer = 0f;
     private Action returnToPool;
 
     public abstract void InitialiseProjectile(Transform playerPos);
@@ -18,4 +19,5 @@ public abstract class Projectile : MonoBehaviour
     {
         returnToPool?.Invoke();
     }
+
 }

@@ -44,6 +44,9 @@ public class ObjectPooler
             newProjectile = factories[projectileType].Create();
         }
 
+        newProjectile.GetComponent<Projectile>().lifeTimer = 0f;
+        SpriteRenderer projSprite = newProjectile.GetComponent<SpriteRenderer>();
+        projSprite.color = new Color(1, 1, 1, 1);
         newProjectile.transform.position = position;
         newProjectile.GetComponent<Projectile>().InitialiseReturn(() => ReturnProjectile(projectileType, newProjectile));
         newProjectile.SetActive(true);

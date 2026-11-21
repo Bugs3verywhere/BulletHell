@@ -1,0 +1,56 @@
+using UnityEngine;
+using System.Collections.Generic;
+
+public class FanAttack : AttackPattern
+{
+    private int attackDirections = 6;
+
+    public FanAttack(ObjectPooler objectPool, float projectileSpeed)
+    {
+        this.objectPool = objectPool;
+        this.projectileSpeed = projectileSpeed;
+
+        availableProjectiles = new List<ProjectileList> { ProjectileList.Standard, ProjectileList.Homing };
+        attacksPerformed = 0;
+        attacks = 72;
+        attackInbetweenTime = 0.5f;
+        angle = 10;
+        rotation = 10;
+        isFinished = false;
+        curProjectile = ProjectileList.Standard;
+    }
+
+    public override void Attack(Transform enemyPos)
+    {
+        if ((attacksPerformed < attacks) && (attackInbetweenTimer >= attackInbetweenTime))
+        {
+            angle += rotation;
+            attackInbetweenTimer = 0f;
+
+            for (int i = 0; i < attackDirections; i++)
+            {
+                vectorX = 0;
+                vectorY = 0;
+
+                vectorX = Mathf.Cos(angle * Mathf.Deg2Rad) * projectileSpeed;
+                vectorY = Mathf.Sin(angle * Mathf.Deg2Rad) * projectileSpeed;
+
+                angle += 360 / attackDirections;
+                GameObject newProjectile = objectPool.GetFromPool(curProjectile, enemyPos.position);
+                Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
+                rb.linearVelocity = new Vector2(vectorX, vectorY);
+                attacksPerformed++;
+            }
+
+            if (attacksPerformed >= attacks)
+                isFinished = true;
+        }
+    }
+
+    public override void ResetAttack()
+    {
+        attacksPerformed = 0;
+        isFinished = false;
+        curProjectile = Random.value < 0.7f ? availableProjectiles[0] : availableProjectiles[1];
+    }
+}

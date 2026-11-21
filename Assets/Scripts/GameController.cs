@@ -20,6 +20,6 @@ public class GameController : MonoBehaviour
             { ProjectileList.Healing, new HealingProjectileFactory(healing) } };
 
         objectPooler = new ObjectPooler(factories, 128);
-        angerManager.Initialise(objectPooler);
+        angerManager.Initialise(objectPooler, player.transform);
     }
 }

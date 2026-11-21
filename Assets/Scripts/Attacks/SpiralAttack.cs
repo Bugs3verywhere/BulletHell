@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpiralAttack : AttackPattern
@@ -9,14 +10,16 @@ public class SpiralAttack : AttackPattern
         this.objectPool = objectPool;
         this.projectileSpeed = projectileSpeed;
 
+        availableProjectiles = new List<ProjectileList> { ProjectileList.Standard, ProjectileList.Homing };
         attacksPerformed = 0;
-        attacks = 36;
+        attacks = 72;
         angle = 10;
         rotation = 10;
         isFinished = false;
+        curProjectile = ProjectileList.Standard;
     }
 
-    public override void Attack(Transform enemyPos, ProjectileList projectileType)
+    public override void Attack(Transform enemyPos)
     {
         if (attacksPerformed < attacks)
         {
@@ -27,12 +30,19 @@ public class SpiralAttack : AttackPattern
             vectorY = Mathf.Sin(angle * Mathf.Deg2Rad) * projectileSpeed;
 
             angle += rotation;
-            GameObject newProjectile = objectPool.GetFromPool(projectileType, enemyPos.position);
+            GameObject newProjectile = objectPool.GetFromPool(curProjectile, enemyPos.position);
             Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
             rb.linearVelocity = new Vector2(vectorX, vectorY);
             attacksPerformed++;
+            if (attacksPerformed >= attacks)
+                isFinished = true;
         }
-        else
-            isFinished = true;
+    }
+
+    public override void ResetAttack()
+    {
+        attacksPerformed = 0;
+        isFinished = false;
+        curProjectile = Random.value < 0.7f ? availableProjectiles[0] : availableProjectiles[1];
     }
 }
