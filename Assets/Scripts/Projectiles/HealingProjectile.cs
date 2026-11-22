@@ -15,4 +15,17 @@ public class HealingProjectile : Projectile
     {
         rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
     }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && !isPlayer)
+        {
+            IHealable player = collision.GetComponentInParent<IHealable>();
+            player.Heal(power);
+            ReturnToPool();
+        }
+        else if (collision.gameObject.tag == "Environment")
+            rb.linearVelocity = Vector2.zero;
+    }
+
 }

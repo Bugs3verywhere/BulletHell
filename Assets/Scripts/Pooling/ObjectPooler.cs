@@ -41,6 +41,7 @@ public class ObjectPooler
 
         newProjectile.transform.position = position;
         newProjectile.GetComponent<Projectile>().InitialiseReturn(() => ReturnProjectile(projectileType, newProjectile));
+        newProjectile.GetComponent<Projectile>().isPlayer = false;
         newProjectile.SetActive(true);
         return newProjectile;
     }

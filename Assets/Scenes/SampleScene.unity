@@ -1910,6 +1910,7 @@ MonoBehaviour:
   healing: {fileID: 1892588036906796207, guid: 4df282cebba71aa418feefc831fd04d3, type: 3}
   playerGameObject: {fileID: 1507661255}
   player: {fileID: 1507661258}
+  playerShooter: {fileID: 1507661262}
 --- !u!1 &1273656319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2007,6 +2008,7 @@ GameObject:
   - component: {fileID: 1507661261}
   - component: {fileID: 1507661258}
   - component: {fileID: 1507661260}
+  - component: {fileID: 1507661262}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2101,7 +2103,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   playerSpeed: 5
-  projectileSpeed: 20
 --- !u!50 &1507661260
 Rigidbody2D:
   serializedVersion: 5
@@ -2165,6 +2166,20 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &1507661262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507661255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad0e1ba0fe6a594688a0408f112b9ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShooter
+  player: {fileID: 1507661258}
+  playerPos: {fileID: 1507661257}
 --- !u!1 &1510857179
 GameObject:
   m_ObjectHideFlags: 0

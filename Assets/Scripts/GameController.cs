@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject healing;
     [SerializeField] private GameObject playerGameObject;
     [SerializeField] private Player player;
+    [SerializeField] private PlayerShooter playerShooter;
     private Dictionary<ProjectileList, ProjectileFactory> factories;
     private ObjectPooler objectPooler;
 
@@ -21,7 +22,7 @@ public class GameController : MonoBehaviour
             { ProjectileList.Healing, new HealingProjectileFactory(healing) } };
 
         objectPooler = new ObjectPooler(factories, 128);
-        player.Initialise(objectPooler);
+        playerShooter.Initialise(objectPooler);
         angerManager.Initialise(objectPooler, playerGameObject.transform);
     }
 }

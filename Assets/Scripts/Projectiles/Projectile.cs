@@ -6,7 +6,7 @@ public abstract class Projectile : MonoBehaviour
 {
     protected float power;
     protected float maxLife;
-    protected bool isPlayer = false;
+    public bool isPlayer = false;
     protected float fadeOutTime = 0.5f;
 
     private SpriteRenderer spriteRenderer;
@@ -33,11 +33,15 @@ public abstract class Projectile : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" && isPlayer)
         {
-            //Damage enemy script
+            IDamageable enemy = collision.GetComponentInParent<IDamageable>();
+            enemy.Damage(power);
+            ReturnToPool();
         }
         else if (collision.gameObject.tag == "Player" && !isPlayer)
         {
-            //Damage player
+            IDamageable player = collision.GetComponentInParent<IDamageable>();
+            player.Damage(power);
+            ReturnToPool();
         }
         else if (collision.gameObject.tag == "Environment")
             ReturnToPool();
