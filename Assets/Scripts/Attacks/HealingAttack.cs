@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealingAttack : AttackPattern
@@ -22,8 +21,6 @@ public class HealingAttack : AttackPattern
         if (attacksPerformed < attacks && attackInbetweenTimer >= attackInbetweenTime)
         {
             attackInbetweenTimer = 0f;
-            vectorX = 0;
-            vectorY = 0;
 
             vectorX = Random.Range(-8, 8);
             vectorY = Random.Range(-8, 8);

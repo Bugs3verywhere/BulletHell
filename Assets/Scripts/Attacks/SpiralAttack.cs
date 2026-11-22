@@ -24,9 +24,6 @@ public class SpiralAttack : AttackPattern
     {
         if (attacksPerformed < attacks)
         {
-            vectorX = 0;
-            vectorY = 0;
-
             vectorX = Mathf.Cos(angle * Mathf.Deg2Rad) * projectileSpeed;
             vectorY = Mathf.Sin(angle * Mathf.Deg2Rad) * projectileSpeed;
 

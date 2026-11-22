@@ -14,7 +14,6 @@ public class HomingProjectileFactory : ProjectileFactory
     public override GameObject Create()
     {
         GameObject newProjectile = Object.Instantiate(prefab);
-        newProjectile.GetComponent<HomingProjectile>();
         HomingProjectile homingProjectile = newProjectile.GetComponent<HomingProjectile>();
         homingProjectile.InitialiseProjectile(playerTransform);
         newProjectile.SetActive(false);

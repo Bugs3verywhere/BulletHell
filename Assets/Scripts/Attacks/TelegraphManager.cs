@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class TelegraphManager : MonoBehaviour
@@ -15,7 +13,6 @@ public class TelegraphManager : MonoBehaviour
     public void TelegraphActivate(AttackPatternList pattern, ProjectileList projectile)
     {
         teleRenderer.sprite = teleIcon[(int)pattern];
-        teleRenderer.color = teleColor[(int)projectile];
         teleRenderer.enabled = true;
 
         StartCoroutine(FadeIn(teleColor[(int)projectile]));

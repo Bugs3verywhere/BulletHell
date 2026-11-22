@@ -28,12 +28,9 @@ public class TargetedAttack : AttackPattern
         if (attacksPerformed < attacks && attackInbetweenTimer >= attackInbetweenTime)
         {
             attackInbetweenTimer = 0;
-            angle = rotation - (rotation * attackDirections);
 
             for (int i = 0; i < attackDirections; i++)
             {
-                angle += rotation;
-
                 Vector2 playerDirection = playerPos.position - enemyPos.position;
 
                 float offsetDegrees = (i - (attackDirections - 1) / 2f) * rotation;

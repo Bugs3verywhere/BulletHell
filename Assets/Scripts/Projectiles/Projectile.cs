@@ -6,13 +6,11 @@ public abstract class Projectile : MonoBehaviour
 {
     protected float power;
     protected float maxLife;
-    public float lifeTimer = 0f;
+    protected bool isPlayer = false;
     protected float fadeOutTime = 0.5f;
 
     private SpriteRenderer spriteRenderer;
     private Action returnToPool;
-
-    public abstract void InitialiseProjectile(Transform playerPos);
 
     public void InitialiseReturn(Action returnToPool)
     {
@@ -29,6 +27,20 @@ public abstract class Projectile : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         SetAlpha(1f);
         StartCoroutine(Lifetime());
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" && isPlayer)
+        {
+            //Damage enemy script
+        }
+        else if (collision.gameObject.tag == "Player" && !isPlayer)
+        {
+            //Damage player
+        }
+        else if (collision.gameObject.tag == "Environment")
+            ReturnToPool();
     }
 
     private IEnumerator Lifetime()

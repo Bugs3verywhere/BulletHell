@@ -30,9 +30,6 @@ public class FanAttack : AttackPattern
 
             for (int i = 0; i < attackDirections; i++)
             {
-                vectorX = 0;
-                vectorY = 0;
-
                 vectorX = Mathf.Cos(angle * Mathf.Deg2Rad) * projectileSpeed;
                 vectorY = Mathf.Sin(angle * Mathf.Deg2Rad) * projectileSpeed;
 

@@ -15,9 +15,4 @@ public class HealingProjectile : Projectile
     {
         rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
     }
-
-    public override void InitialiseProjectile(Transform playerPos)
-    {
-
-    }
 }

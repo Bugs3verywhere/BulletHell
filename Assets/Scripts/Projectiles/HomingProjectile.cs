@@ -1,10 +1,8 @@
-using System;
 using UnityEngine;
 
 public class HomingProjectile : Projectile
 {
     private Rigidbody2D rb;
-    private GameObject homingProjectile;
     private Transform playerPos;
     private float maxSpeed = 6f;
     private float turnAcceleration = 2f;
@@ -12,12 +10,11 @@ public class HomingProjectile : Projectile
 
     private void Awake()
     {
-        homingProjectile = gameObject;
-        rb = homingProjectile.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         maxLife = 10f;
     }
 
-    public override void InitialiseProjectile(Transform playerTransform)
+    public void InitialiseProjectile(Transform playerTransform)
     {
         playerPos = playerTransform;
     }

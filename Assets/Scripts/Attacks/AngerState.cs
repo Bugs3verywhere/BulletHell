@@ -9,8 +9,6 @@ public abstract class AngerState
     protected List<AttackPattern> availableAttackPatterns;
     protected AttackPattern currentAttackPattern;
 
-    protected ObjectPooler objectPool;
-
     protected float projectileSpeed;
     protected float teleDuration;
     protected float attackDuration;

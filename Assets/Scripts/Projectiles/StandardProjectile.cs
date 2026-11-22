@@ -6,9 +6,4 @@ public class StandardProjectile : Projectile
     {
         maxLife = 5f;
     }
-
-    public override void InitialiseProjectile(Transform playerPos)
-    {
-        throw new System.NotImplementedException();
-    }
 }

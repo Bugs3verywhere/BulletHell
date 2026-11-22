@@ -5,11 +5,6 @@ public class ObjectPooler
 {
     private Dictionary<ProjectileList, ProjectileFactory> factories;
     private Dictionary<ProjectileList, Stack<GameObject>> availableProjectiles;
-    private ProjectileFactory projectileFactory;
-    private Transform playerTransform;
-    private Transform enemyPos;
-    private GameObject projectile;
-    [SerializeField] private int initialPoolSize;
 
     public ObjectPooler(Dictionary<ProjectileList, ProjectileFactory> factories, int initialPoolSize)
     {
@@ -44,14 +39,10 @@ public class ObjectPooler
             newProjectile = factories[projectileType].Create();
         }
 
-        newProjectile.GetComponent<Projectile>().lifeTimer = 0f;
-        SpriteRenderer projSprite = newProjectile.GetComponent<SpriteRenderer>();
-        projSprite.color = new Color(1, 1, 1, 1);
         newProjectile.transform.position = position;
         newProjectile.GetComponent<Projectile>().InitialiseReturn(() => ReturnProjectile(projectileType, newProjectile));
         newProjectile.SetActive(true);
         return newProjectile;
-
     }
 
     public void ReturnProjectile(ProjectileList projectileType, GameObject returnedBullet)
