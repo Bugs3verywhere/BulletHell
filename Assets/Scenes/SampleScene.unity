@@ -132,9 +132,10 @@ GameObject:
   - component: {fileID: 293268559}
   - component: {fileID: 293268557}
   - component: {fileID: 293268558}
+  - component: {fileID: 293268560}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,11 +185,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1084657085
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 407907198125173640, guid: f7cad474a025f394c9405b4b2073bd08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -276,6 +277,19 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &293268560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293268553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3105e6ca50881a74eb38e5b1f1d08279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 1000
 --- !u!1 &296491718
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,7 +1722,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.13672486, g: 0.13962269, b: 0.13846356, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1813,7 +1827,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000004510c3c5
+  m_ApplyToSortingLayers: 000000004510c3c5437259bfe525d9cc
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1908,6 +1922,7 @@ MonoBehaviour:
   standard: {fileID: 1892588036906796207, guid: df8348df71840994c84b3d2285316fd6, type: 3}
   homing: {fileID: 2823664464626277433, guid: 671da6461005e9e4781de96dad301496, type: 3}
   healing: {fileID: 1892588036906796207, guid: 4df282cebba71aa418feefc831fd04d3, type: 3}
+  standardPlayer: {fileID: 1892588036906796207, guid: 1073b6331de747f4b8f532f4c080c5c0, type: 3}
   playerGameObject: {fileID: 1507661255}
   player: {fileID: 1507661258}
   playerShooter: {fileID: 1507661262}
@@ -2009,6 +2024,7 @@ GameObject:
   - component: {fileID: 1507661258}
   - component: {fileID: 1507661260}
   - component: {fileID: 1507661262}
+  - component: {fileID: 1507661263}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2065,7 +2081,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3de7f025b788afd41a61676488ea3f30, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2165,7 +2181,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.25
 --- !u!114 &1507661262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,6 +2196,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShooter
   player: {fileID: 1507661258}
   playerPos: {fileID: 1507661257}
+--- !u!114 &1507661263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507661255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05d9e66f064a5c429fa8147e32067b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 5
 --- !u!1 &1510857179
 GameObject:
   m_ObjectHideFlags: 0

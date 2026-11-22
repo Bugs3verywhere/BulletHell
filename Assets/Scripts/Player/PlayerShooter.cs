@@ -27,7 +27,6 @@ public class PlayerShooter : MonoBehaviour
                 Vector2 projectileVelocity = lookingDirection * projectileSpeed;
 
                 GameObject newProjectile = objectPooler.GetFromPool(ProjectileList.StandardPlayer, playerPos.position);
-                newProjectile.GetComponent<Projectile>().isPlayer = true;
                 newProjectile.GetComponent<Rigidbody2D>().linearVelocity = projectileVelocity;
             }
 

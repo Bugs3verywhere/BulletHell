@@ -4,9 +4,9 @@ using System.Collections;
 
 public abstract class Projectile : MonoBehaviour
 {
-    protected float power;
+    protected float power = 1f;
     protected float maxLife;
-    public bool isPlayer = false;
+    [SerializeField] public bool isPlayer = false;
     protected float fadeOutTime = 0.5f;
 
     private SpriteRenderer spriteRenderer;

@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject standard;
     [SerializeField] private GameObject homing;
     [SerializeField] private GameObject healing;
+    [SerializeField] private GameObject standardPlayer;
     [SerializeField] private GameObject playerGameObject;
     [SerializeField] private Player player;
     [SerializeField] private PlayerShooter playerShooter;
@@ -19,7 +20,8 @@ public class GameController : MonoBehaviour
         factories = new Dictionary<ProjectileList, ProjectileFactory> {
             { ProjectileList.Standard, new StandardProjectileFactory(standard) },
             { ProjectileList.Homing, new HomingProjectileFactory(homing, playerGameObject.transform) },
-            { ProjectileList.Healing, new HealingProjectileFactory(healing) } };
+            { ProjectileList.Healing, new HealingProjectileFactory(healing) },
+            {ProjectileList.StandardPlayer, new StandardProjectileFactory(standardPlayer)} };
 
         objectPooler = new ObjectPooler(factories, 128);
         playerShooter.Initialise(objectPooler);
