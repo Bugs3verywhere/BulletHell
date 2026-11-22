@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AngerStateManager : MonoBehaviour
 {
+    [SerializeField] private TelegraphManager teleManager;
+    public TelegraphManager TeleManager => teleManager;
     public ObjectPooler objectPooler;
     public Transform player;
     private AngerState currentState;

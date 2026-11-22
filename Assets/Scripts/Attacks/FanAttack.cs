@@ -3,17 +3,18 @@ using System.Collections.Generic;
 
 public class FanAttack : AttackPattern
 {
-    private int attackDirections = 6;
-
     public FanAttack(ObjectPooler objectPool, float projectileSpeed)
     {
         this.objectPool = objectPool;
         this.projectileSpeed = projectileSpeed;
 
+        PatternType = AttackPatternList.Fan;
+
         availableProjectiles = new List<ProjectileList> { ProjectileList.Standard, ProjectileList.Homing };
         attacksPerformed = 0;
         attacks = 72;
         attackInbetweenTime = 0.5f;
+        attackDirections = 6;
         angle = 10;
         rotation = 10;
         isFinished = false;
@@ -22,7 +23,7 @@ public class FanAttack : AttackPattern
 
     public override void Attack(Transform enemyPos)
     {
-        if ((attacksPerformed < attacks) && (attackInbetweenTimer >= attackInbetweenTime))
+        if (attacksPerformed < attacks && attackInbetweenTimer >= attackInbetweenTime)
         {
             angle += rotation;
             attackInbetweenTimer = 0f;

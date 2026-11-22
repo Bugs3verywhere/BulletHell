@@ -9,12 +9,13 @@ public class SpiralAttack : AttackPattern
     {
         this.objectPool = objectPool;
         this.projectileSpeed = projectileSpeed;
+        PatternType = AttackPatternList.Spiral;
 
         availableProjectiles = new List<ProjectileList> { ProjectileList.Standard, ProjectileList.Homing };
         attacksPerformed = 0;
-        attacks = 72;
+        attacks = 48;
         angle = 10;
-        rotation = 10;
+        rotation = 20;
         isFinished = false;
         curProjectile = ProjectileList.Standard;
     }

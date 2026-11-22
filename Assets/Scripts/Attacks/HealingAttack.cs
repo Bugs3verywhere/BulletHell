@@ -7,24 +7,26 @@ public class HealingAttack : AttackPattern
     {
         this.objectPool = objectPool;
 
-        availableProjectiles = new List<ProjectileList> { ProjectileList.Healing };
+        PatternType = AttackPatternList.Healing;
+
         attacksPerformed = 0;
         attackInbetweenTime = 0.5f;
         attacks = 4;
         isFinished = false;
-        curProjectile = ProjectileList.Standard;
+
+        curProjectile = ProjectileList.Healing;
     }
 
     public override void Attack(Transform enemyPos)
     {
-        if ((attacksPerformed < attacks) && (attackInbetweenTimer >= attackInbetweenTime))
+        if (attacksPerformed < attacks && attackInbetweenTimer >= attackInbetweenTime)
         {
             attackInbetweenTimer = 0f;
             vectorX = 0;
             vectorY = 0;
 
-            vectorX = Random.Range(0, 8);
-            vectorY = Random.Range(0, 8);
+            vectorX = Random.Range(-8, 8);
+            vectorY = Random.Range(-8, 8);
 
             GameObject newProjectile = objectPool.GetFromPool(curProjectile, enemyPos.position);
             Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();

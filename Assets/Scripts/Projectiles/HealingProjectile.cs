@@ -1,18 +1,23 @@
-using NUnit.Framework.Interfaces;
 using UnityEngine;
 
-public class HealingProjectile : StandardProjectile
+public class HealingProjectile : Projectile
 {
-    private GameObject healingProjectile;
     private Rigidbody2D rb;
+    private float deceleration = 2f;
 
     private void Awake()
     {
-        rb = healingProjectile.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         maxLife = 20;
     }
-    private void Update()
+
+    private void FixedUpdate()
     {
-        rb.linearVelocity -= new Vector2(Time.fixedDeltaTime, Time.fixedDeltaTime);
+        rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
+    }
+
+    public override void InitialiseProjectile(Transform playerPos)
+    {
+
     }
 }

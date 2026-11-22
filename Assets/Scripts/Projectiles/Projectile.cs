@@ -1,11 +1,15 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public abstract class Projectile : MonoBehaviour
 {
     protected float power;
     protected float maxLife;
     public float lifeTimer = 0f;
+    protected float fadeOutTime = 0.5f;
+
+    private SpriteRenderer spriteRenderer;
     private Action returnToPool;
 
     public abstract void InitialiseProjectile(Transform playerPos);
@@ -20,4 +24,33 @@ public abstract class Projectile : MonoBehaviour
         returnToPool?.Invoke();
     }
 
+    private void OnEnable()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        SetAlpha(1f);
+        StartCoroutine(Lifetime());
+    }
+
+    private IEnumerator Lifetime()
+    {
+        float lifeTime = Mathf.Max(0f, maxLife - fadeOutTime);
+        yield return new WaitForSeconds(lifeTime);
+
+        float time = 0f;
+        while (time < fadeOutTime)
+        {
+            time += Time.deltaTime;
+            SetAlpha(1f - time / fadeOutTime);
+            yield return null;
+        }
+
+        ReturnToPool();
+    }
+
+    private void SetAlpha(float alpha)
+    {
+        Color spriteColor = spriteRenderer.color;
+        spriteColor.a = alpha;
+        spriteRenderer.color = spriteColor;
+    }
 }

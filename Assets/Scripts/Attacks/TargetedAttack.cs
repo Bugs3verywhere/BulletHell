@@ -11,37 +11,45 @@ public class TargetedAttack : AttackPattern
         this.objectPool = objectPool;
         this.playerPos = playerPos;
         this.projectileSpeed = projectileSpeed;
+        PatternType = AttackPatternList.Targeted;
 
         availableProjectiles = new List<ProjectileList> { ProjectileList.Standard, ProjectileList.Homing };
         attacksPerformed = 0;
-        attacks = 48;
+        attacks = 72;
+        attackInbetweenTime = 0.4f;
+        rotation = 15;
+        attackDirections = 5;
         isFinished = false;
         curProjectile = ProjectileList.Standard;
     }
 
     public override void Attack(Transform enemyPos)
     {
-        if (attacksPerformed < attacks)
+        if (attacksPerformed < attacks && attackInbetweenTimer >= attackInbetweenTime)
         {
-            vectorX = 0;
-            vectorY = 0;
-            float xDelta;
-            float yDelta;
+            attackInbetweenTimer = 0;
+            angle = rotation - (rotation * attackDirections);
 
-            //Vector2 playerDirection = ((Vector2)playerPos.position - (Vector2)enemyPos.position).normalized;
+            for (int i = 0; i < attackDirections; i++)
+            {
+                angle += rotation;
 
-            xDelta = playerPos.position.x - enemyPos.position.x;
-            yDelta = playerPos.position.y - enemyPos.position.y;
+                Vector2 playerDirection = playerPos.position - enemyPos.position;
 
-            vectorX = Mathf.Cos(Mathf.Atan2(yDelta, xDelta)) * projectileSpeed;
-            vectorY = Mathf.Sin(Mathf.Atan2(yDelta, xDelta)) * projectileSpeed;
+                float offsetDegrees = (i - (attackDirections - 1) / 2f) * rotation;
+                float aimDirection = Mathf.Atan2(playerDirection.y, playerDirection.x) + offsetDegrees * Mathf.Deg2Rad;
 
-            GameObject newProjectile = objectPool.GetFromPool(curProjectile, enemyPos.position);
-            Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
-            rb.linearVelocity = new Vector2(vectorX, vectorY);
-            attacksPerformed++;
-            if (attacksPerformed >= attacks)
-                isFinished = true;
+                vectorX = Mathf.Cos(aimDirection) * projectileSpeed;
+                vectorY = Mathf.Sin(aimDirection) * projectileSpeed;
+
+                GameObject newProjectile = objectPool.GetFromPool(curProjectile, enemyPos.position);
+                Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
+                rb.linearVelocity = new Vector2(vectorX, vectorY);
+                attacksPerformed++;
+
+                if (attacksPerformed >= attacks)
+                    isFinished = true;
+            }
         }
     }
 

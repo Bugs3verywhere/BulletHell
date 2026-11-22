@@ -22,25 +22,15 @@ public class HomingProjectile : Projectile
         playerPos = playerTransform;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        lifeTimer += Time.deltaTime;
-
-        if (lifeTimer > 8f)
-        {
-            SpriteRenderer projectileSprite = gameObject.GetComponent<SpriteRenderer>();
-            projectileSprite.color = new Color(1, 1, 1, maxLife % lifeTimer);
-        }
-
-        if (lifeTimer >= maxLife)
-            ReturnToPool();
 
         Vector2 playerDirection = ((Vector2)playerPos.position - rb.position).normalized;
 
         rb.linearVelocity += playerDirection * turnAcceleration * Time.fixedDeltaTime;
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
 
-        float playerRotation = Mathf.Atan2(playerDirection.x, playerDirection.y) * Mathf.Rad2Deg - 90f;
+        float playerRotation = Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg - 90f;
         rb.MoveRotation(Mathf.MoveTowardsAngle(rb.rotation, playerRotation, rotateSpeed * Time.fixedDeltaTime));
     }
 }

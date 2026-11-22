@@ -4,8 +4,11 @@ using UnityEngine;
 
 public abstract class AttackPattern
 {
+    public AttackPatternList PatternType { get; protected set; }
+    public ProjectileList CurrentProjectile => curProjectile;
     protected int attacksPerformed;
     protected int attacks;
+    protected int attackDirections;
     protected float angle;
     protected float rotation;
     protected float vectorX;

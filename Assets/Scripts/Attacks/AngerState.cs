@@ -3,18 +3,80 @@ using UnityEngine;
 
 public abstract class AngerState
 {
-    protected List<AttackPattern> availableAttackPatterns { get; set; }
-    protected AttackPattern currentAttackPattern;
-    protected AttackPattern spiralAttack;
-    protected ObjectPooler objectPool;
-    protected float projectileSpeed;
-    protected float attackTime = 0f;
-    protected float attackFrequency { get; set; }
-    protected float switchTime = 0f;
-    protected float switchFrequency { get; set; }
+    private enum CurrentBehaviour { Telegraph, Attack, Rest }
+    private CurrentBehaviour behaviour;
 
-    public abstract void EnterState(AngerStateManager anger);
-    public abstract void UpdateState(AngerStateManager anger);
+    protected List<AttackPattern> availableAttackPatterns;
+    protected AttackPattern currentAttackPattern;
+
+    protected ObjectPooler objectPool;
+
+    protected float projectileSpeed;
+    protected float teleDuration;
+    protected float attackDuration;
+    protected float restDuration;
+
+    protected float teleTime;
+    protected float attackTime;
+    protected float restTime;
+
+    protected abstract void InitialiseState(AngerStateManager anger);
+
+    public void EnterState(AngerStateManager anger)
+    {
+        InitialiseState(anger);
+        BeginAttack(anger, availableAttackPatterns[0]);
+    }
+
+    public void UpdateState(AngerStateManager anger)
+    {
+        currentAttackPattern.attackInbetweenTimer += Time.deltaTime;
+
+        switch (behaviour)
+        {
+            case CurrentBehaviour.Telegraph:
+                teleTime += Time.deltaTime;
+                if (teleTime >= teleDuration)
+                {
+                    anger.TeleManager.TelegraphDeactivate();
+                    attackTime = 0f;
+                    behaviour = CurrentBehaviour.Attack;
+                }
+                break;
+
+            case CurrentBehaviour.Attack:
+                attackTime += Time.deltaTime;
+                if (attackTime >= attackDuration)
+                {
+                    attackTime = 0f;
+                    currentAttackPattern.Attack(anger.transform);
+                }
+                if (currentAttackPattern.isFinished)
+                {
+                    restTime = 0f;
+                    behaviour = CurrentBehaviour.Rest;
+                }
+                break;
+
+            case CurrentBehaviour.Rest:
+                restTime += Time.deltaTime;
+                if (restTime >= restDuration)
+                {
+                    BeginAttack(anger, availableAttackPatterns[Random.Range(0, availableAttackPatterns.Count)]);
+                }
+                break;
+        }
+    }
+
+    private void BeginAttack(AngerStateManager anger, AttackPattern attackPattern)
+    {
+        currentAttackPattern = attackPattern;
+        currentAttackPattern.ResetAttack();
+        anger.TeleManager.TelegraphActivate(currentAttackPattern.PatternType, currentAttackPattern.CurrentProjectile);
+        teleTime = 0f;
+        behaviour = CurrentBehaviour.Telegraph;
+    }
+
     public abstract void SwitchState(AngerStateManager anger);
 
 }

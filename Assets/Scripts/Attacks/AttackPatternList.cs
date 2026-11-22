@@ -4,5 +4,6 @@ public enum AttackPatternList
 {
     Spiral,
     Fan,
-    Targeted
+    Targeted,
+    Healing
 }
