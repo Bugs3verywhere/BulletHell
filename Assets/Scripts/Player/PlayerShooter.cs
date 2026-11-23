@@ -4,8 +4,11 @@ using UnityEngine.InputSystem;
 public class PlayerShooter : MonoBehaviour
 {
     [SerializeField] private Player player;
+
     [SerializeField] private Transform playerPos;
+
     private float projectileSpeed = 20f;
+
     private float fireSpeed = 0.2f;
     private float fireTimer;
 
@@ -28,6 +31,10 @@ public class PlayerShooter : MonoBehaviour
 
                 GameObject newProjectile = objectPooler.GetFromPool(ProjectileList.StandardPlayer, playerPos.position);
                 newProjectile.GetComponent<Rigidbody2D>().linearVelocity = projectileVelocity;
+                float rotation = Mathf.Atan2(lookingDirection.y, lookingDirection.x) * Mathf.Rad2Deg;
+                newProjectile.transform.rotation = Quaternion.Euler(0f, 0f, rotation - 90f);
+
+
             }
 
         }

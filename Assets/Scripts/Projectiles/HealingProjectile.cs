@@ -3,6 +3,7 @@ using UnityEngine;
 public class HealingProjectile : Projectile
 {
     private Rigidbody2D rb;
+
     private float deceleration = 2f;
 
     private void Awake()
@@ -11,10 +12,7 @@ public class HealingProjectile : Projectile
         maxLife = 20;
     }
 
-    private void FixedUpdate()
-    {
-        rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
-    }
+    private void FixedUpdate() => rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {

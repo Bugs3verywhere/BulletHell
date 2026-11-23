@@ -7,13 +7,13 @@ public class HealingAttack : AttackPattern
         this.objectPool = objectPool;
 
         PatternType = AttackPatternList.Healing;
-
-        attacksPerformed = 0;
-        attackInbetweenTime = 0.5f;
-        attacks = 4;
-        isFinished = false;
-
         curProjectile = ProjectileList.Healing;
+
+        attacks = 3;
+
+        attackInbetweenTime = 0.5f;
+
+        isFinished = false;
     }
 
     public override void Attack(Transform enemyPos)
@@ -29,6 +29,7 @@ public class HealingAttack : AttackPattern
             Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
             rb.linearVelocity = new Vector2(vectorX, vectorY);
             attacksPerformed++;
+
             if (attacksPerformed >= attacks)
                 isFinished = true;
         }

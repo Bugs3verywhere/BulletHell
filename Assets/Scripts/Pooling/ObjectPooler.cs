@@ -4,6 +4,7 @@ using UnityEngine;
 public class ObjectPooler
 {
     private Dictionary<ProjectileList, ProjectileFactory> factories;
+
     private Dictionary<ProjectileList, Stack<GameObject>> availableProjectiles;
 
     public ObjectPooler(Dictionary<ProjectileList, ProjectileFactory> factories, int initialPoolSize)

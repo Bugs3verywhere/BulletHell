@@ -4,8 +4,11 @@ using UnityEngine;
 public class TelegraphManager : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer teleRenderer;
+
     [SerializeField] private Sprite[] teleIcon;
+
     [SerializeField] private Color[] teleColor;
+
     private float fadeInTime = 0.5f;
 
     private void Awake() => TelegraphDeactivate();

@@ -3,7 +3,9 @@ using UnityEngine;
 public class HomingProjectile : Projectile
 {
     private Rigidbody2D rb;
+
     private Transform playerPos;
+
     private float maxSpeed = 6f;
     private float turnAcceleration = 2f;
     private float rotateSpeed = 360f;
@@ -14,10 +16,7 @@ public class HomingProjectile : Projectile
         maxLife = 10f;
     }
 
-    public void InitialiseProjectile(Transform playerTransform)
-    {
-        playerPos = playerTransform;
-    }
+    public void InitialiseProjectile(Transform playerTransform) => playerPos = playerTransform;
 
     private void FixedUpdate()
     {

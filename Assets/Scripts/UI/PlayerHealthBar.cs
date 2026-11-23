@@ -5,8 +5,11 @@ using UnityEngine.UI;
 public class PlayerHealthBar : MonoBehaviour
 {
     [SerializeField] private Health playerHealth;
+
     [SerializeField] private CanvasGroup canvasGroup;
+
     [SerializeField] private Image[] segments;
+
     [SerializeField] private float showTime = 0.5f;
     [SerializeField] private float fadeTime = 0.5f;
 

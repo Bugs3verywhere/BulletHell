@@ -4,10 +4,7 @@ public class StandardProjectileFactory : ProjectileFactory
 {
     private GameObject prefab;
 
-    public StandardProjectileFactory(GameObject prefab)
-    {
-        this.prefab = prefab;
-    }
+    public StandardProjectileFactory(GameObject prefab) => this.prefab = prefab;
 
     public override GameObject Create()
     {

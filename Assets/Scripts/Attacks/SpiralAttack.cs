@@ -3,21 +3,22 @@ using UnityEngine;
 
 public class SpiralAttack : AttackPattern
 {
-
-
     public SpiralAttack(ObjectPooler objectPool, float projectileSpeed)
     {
         this.objectPool = objectPool;
         this.projectileSpeed = projectileSpeed;
+
         PatternType = AttackPatternList.Spiral;
 
         availableProjectiles = new List<ProjectileList> { ProjectileList.Standard, ProjectileList.Homing };
-        attacksPerformed = 0;
+        curProjectile = ProjectileList.Standard;
+
         attacks = 48;
+
         angle = 10;
         rotation = 20;
+
         isFinished = false;
-        curProjectile = ProjectileList.Standard;
     }
 
     public override void Attack(Transform enemyPos)
@@ -32,6 +33,7 @@ public class SpiralAttack : AttackPattern
             Rigidbody2D rb = newProjectile.GetComponent<Rigidbody2D>();
             rb.linearVelocity = new Vector2(vectorX, vectorY);
             attacksPerformed++;
+
             if (attacksPerformed >= attacks)
                 isFinished = true;
         }

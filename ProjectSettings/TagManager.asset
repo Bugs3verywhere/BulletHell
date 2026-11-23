@@ -49,6 +49,9 @@ TagManager:
   - name: Telegraph
     uniqueID: 3317895237
     locked: 0
+  - name: PlayerProjectile
+    uniqueID: 2824538131
+    locked: 0
   - name: Player
     uniqueID: 4141040615
     locked: 0

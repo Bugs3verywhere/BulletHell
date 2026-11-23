@@ -367,7 +367,6 @@ GameObject:
   - component: {fileID: 293268557}
   - component: {fileID: 293268558}
   - component: {fileID: 293268560}
-  - component: {fileID: 293268561}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -421,7 +420,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1084657085
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 407907198125173640, guid: f7cad474a025f394c9405b4b2073bd08, type: 3}
@@ -526,19 +525,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 1000
---- !u!114 &293268561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 293268553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8376a7a4946525f41a442103165088f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthBar
-  enemyHealth: {fileID: 293268560}
 --- !u!1 &296491718
 GameObject:
   m_ObjectHideFlags: 0
@@ -10279,7 +10265,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000004510c3c5437259bfe525d9cc43179ea0e743d3f6c18b6186
+  m_ApplyToSortingLayers: 000000004510c3c5437259bfe525d9cc43179ea0e743d3f6c18b618613085ba8
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -10337,8 +10323,9 @@ GameObject:
   - component: {fileID: 755281826}
   - component: {fileID: 755281828}
   - component: {fileID: 755281827}
+  - component: {fileID: 755281829}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: EnemyHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10463,6 +10450,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755281825}
   m_CullTransparentMesh: 1
+--- !u!114 &755281829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755281825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8376a7a4946525f41a442103165088f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthBar
+  enemyHealth: {fileID: 293268560}
 --- !u!1 &779351766
 GameObject:
   m_ObjectHideFlags: 0
@@ -10548,6 +10548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 969271027}
   - component: {fileID: 969271028}
+  - component: {fileID: 969271029}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -10590,6 +10591,20 @@ MonoBehaviour:
   playerGameObject: {fileID: 1507661255}
   player: {fileID: 1507661258}
   playerShooter: {fileID: 1507661262}
+--- !u!114 &969271029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969271025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44a0530a8c721af48b52b11d2d43f7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEnd
+  playerHealth: {fileID: 1507661263}
+  enemyHealth: {fileID: 293268560}
 --- !u!1 &979776615
 GameObject:
   m_ObjectHideFlags: 0
@@ -10804,7 +10819,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -153926681
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 3de7f025b788afd41a61676488ea3f30, type: 3}

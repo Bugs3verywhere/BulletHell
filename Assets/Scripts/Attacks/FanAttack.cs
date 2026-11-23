@@ -11,14 +11,17 @@ public class FanAttack : AttackPattern
         PatternType = AttackPatternList.Fan;
 
         availableProjectiles = new List<ProjectileList> { ProjectileList.Standard, ProjectileList.Homing };
-        attacksPerformed = 0;
+        curProjectile = ProjectileList.Standard;
+
         attacks = 72;
-        attackInbetweenTime = 0.5f;
         attackDirections = 6;
+
+        attackInbetweenTime = 0.5f;
+
         angle = 10;
         rotation = 10;
+
         isFinished = false;
-        curProjectile = ProjectileList.Standard;
     }
 
     public override void Attack(Transform enemyPos)

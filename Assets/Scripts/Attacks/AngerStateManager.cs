@@ -4,8 +4,11 @@ public class AngerStateManager : MonoBehaviour
 {
     [SerializeField] private TelegraphManager teleManager;
     public TelegraphManager TeleManager => teleManager;
+
     public ObjectPooler objectPooler;
+
     public Transform player;
+
     private AngerState currentState;
     private AngerState standardState = new StandardAngerState();
 
@@ -17,8 +20,5 @@ public class AngerStateManager : MonoBehaviour
         currentState.EnterState(this);
     }
 
-    void Update()
-    {
-        currentState.UpdateState(this);
-    }
+    void Update() => currentState.UpdateState(this);
 }

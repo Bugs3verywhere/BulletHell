@@ -5,22 +5,20 @@ using System.Collections;
 public abstract class Projectile : MonoBehaviour
 {
     protected float power = 1f;
+
     protected float maxLife;
+
     [SerializeField] public bool isPlayer = false;
+
     protected float fadeOutTime = 0.5f;
 
     private SpriteRenderer spriteRenderer;
+
     private Action returnToPool;
 
-    public void InitialiseReturn(Action returnToPool)
-    {
-        this.returnToPool = returnToPool;
-    }
+    public void InitialiseReturn(Action returnToPool) => this.returnToPool = returnToPool;
 
-    public void ReturnToPool()
-    {
-        returnToPool?.Invoke();
-    }
+    public void ReturnToPool() => returnToPool?.Invoke();
 
     private void OnEnable()
     {

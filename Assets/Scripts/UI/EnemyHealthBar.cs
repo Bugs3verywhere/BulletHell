@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyHealthBar : MonoBehaviour
 {
     [SerializeField] private Health enemyHealth;
+
     private TMP_Text enemyText;
 
     private void Awake() => enemyText = GetComponent<TMP_Text>();

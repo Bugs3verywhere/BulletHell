@@ -11,16 +11,20 @@ public class TargetedAttack : AttackPattern
         this.objectPool = objectPool;
         this.playerPos = playerPos;
         this.projectileSpeed = projectileSpeed;
+
         PatternType = AttackPatternList.Targeted;
 
         availableProjectiles = new List<ProjectileList> { ProjectileList.Standard, ProjectileList.Homing };
-        attacksPerformed = 0;
-        attacks = 72;
-        attackInbetweenTime = 0.4f;
-        rotation = 15;
-        attackDirections = 5;
-        isFinished = false;
         curProjectile = ProjectileList.Standard;
+
+        attacks = 72;
+        attackDirections = 5;
+
+        rotation = 15;
+
+        attackInbetweenTime = 0.4f;
+
+        isFinished = false;
     }
 
     public override void Attack(Transform enemyPos)

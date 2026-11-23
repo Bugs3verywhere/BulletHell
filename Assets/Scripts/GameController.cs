@@ -9,10 +9,15 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject homing;
     [SerializeField] private GameObject healing;
     [SerializeField] private GameObject standardPlayer;
+
     [SerializeField] private GameObject playerGameObject;
+
     [SerializeField] private Player player;
+
     [SerializeField] private PlayerShooter playerShooter;
+
     private Dictionary<ProjectileList, ProjectileFactory> factories;
+
     private ObjectPooler objectPooler;
 
     void Start()
@@ -27,4 +32,5 @@ public class GameController : MonoBehaviour
         playerShooter.Initialise(objectPooler);
         angerManager.Initialise(objectPooler, playerGameObject.transform);
     }
+
 }
