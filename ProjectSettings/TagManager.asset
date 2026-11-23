@@ -40,17 +40,26 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Projectile
-    uniqueID: 3436783077
-    locked: 0
-  - name: Telegraph
-    uniqueID: 3317895237
+  - name: Floor
+    uniqueID: 2694715203
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Telegraph
+    uniqueID: 3317895237
+    locked: 0
+  - name: Player
+    uniqueID: 4141040615
+    locked: 0
+  - name: Projectile
+    uniqueID: 3436783077
+    locked: 0
   - name: Enemy
     uniqueID: 3210310211
+    locked: 0
+  - name: Canvas
+    uniqueID: 2254539713
     locked: 0
   m_RenderingLayers:
   - Default
