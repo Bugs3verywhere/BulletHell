@@ -23,8 +23,6 @@ public class TargetedAttack : AttackPattern
         rotation = 15;
 
         attackInbetweenTime = 0.4f;
-
-        isFinished = false;
     }
 
     public override void Attack(Transform enemyPos)

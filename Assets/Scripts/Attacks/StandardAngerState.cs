@@ -4,6 +4,8 @@ public class StandardAngerState : AngerState
 {
     protected override void InitialiseState(AngerStateManager anger)
     {
+        projectileSpeed = 5f;
+
         availableAttackPatterns = new List<AttackPattern>()
         {
             new SpiralAttack(anger.objectPooler, projectileSpeed),
@@ -11,8 +13,6 @@ public class StandardAngerState : AngerState
             new TargetedAttack(anger.objectPooler, projectileSpeed, anger.player),
             new HealingAttack(anger.objectPooler)
         };
-
-        projectileSpeed = 5f;
 
         attackDuration = 0.1f;
         teleDuration = 1.5f;
