@@ -11083,6 +11083,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4cb344ae53fb5354da6c3de7c749aeef, type: 3}
   - {fileID: 21300000, guid: 7e9ddc23af5410244a08f918815daec1, type: 3}
   - {fileID: 21300000, guid: 75528c988a090c04db911bfbb878911a, type: 3}
+  - {fileID: 21300000, guid: bf9c42624fae91d41b422a3928c1052d, type: 3}
+  - {fileID: 21300000, guid: 947a197958c8be448a19d91e38bab0c0, type: 3}
   teleColor:
   - {r: 0.85098046, g: 0.34117648, b: 0.38823533, a: 1}
   - {r: 0.9843138, g: 0.9490197, b: 0.21176472, a: 1}

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class AngerState
 {
-    private enum CurrentBehaviour { Telegraph, Attack, Rest }
+    private enum CurrentBehaviour { Telegraph, Attack, Rest, Switching }
     private CurrentBehaviour behaviour;
 
     protected List<AttackPattern> availableAttackPatterns;
@@ -13,17 +13,23 @@ public abstract class AngerState
     protected float teleDuration;
     protected float attackDuration;
     protected float restDuration;
+    protected float switchDuration;
 
     protected float teleTime;
     protected float attackTime;
     protected float restTime;
+    protected float switchTime;
 
-    protected abstract void InitialiseState(AngerStateManager anger);
+    protected Health enemyHealth;
+    public float healthGate;
 
-    public void EnterState(AngerStateManager anger)
+    protected abstract void InitialiseState(AngerStateManager anger, Health enemyHealth);
+
+    public void EnterState(AngerStateManager anger, Health enemyHealth)
     {
-        InitialiseState(anger);
+        InitialiseState(anger, enemyHealth);
         BeginAttack(anger, availableAttackPatterns[0]);
+        enemyHealth.HealthChange += HealthCheck;
     }
 
     public void UpdateState(AngerStateManager anger)
@@ -63,6 +69,14 @@ public abstract class AngerState
                     BeginAttack(anger, availableAttackPatterns[Random.Range(0, availableAttackPatterns.Count)]);
                 }
                 break;
+
+            case CurrentBehaviour.Switching:
+                switchTime += Time.deltaTime;
+                if (switchTime >= switchDuration)
+                {
+                    SwitchState(anger);
+                }
+                break;
         }
     }
 
@@ -75,6 +89,13 @@ public abstract class AngerState
         behaviour = CurrentBehaviour.Telegraph;
     }
 
-    public abstract void SwitchState(AngerStateManager anger);
+    private void HealthCheck(float current, float max)
+    {
+        if (current <= healthGate)
+        {
+            behaviour = CurrentBehaviour.Switching;
+        }
+    }
 
+    public abstract void SwitchState(AngerStateManager anger);
 }

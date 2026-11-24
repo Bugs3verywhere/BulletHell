@@ -12,8 +12,6 @@ public class HealingAttack : AttackPattern
         attacks = 3;
 
         attackInbetweenTime = 0.5f;
-
-        isFinished = false;
     }
 
     public override void Attack(Transform enemyPos)

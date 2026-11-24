@@ -17,8 +17,6 @@ public class SpiralAttack : AttackPattern
 
         angle = 10;
         rotation = 20;
-
-        isFinished = false;
     }
 
     public override void Attack(Transform enemyPos)

@@ -9,16 +9,27 @@ public class AngerStateManager : MonoBehaviour
 
     public Transform player;
 
+    public Health enemyHealth { get; private set; }
+
     private AngerState currentState;
-    private AngerState standardState = new StandardAngerState();
+    public AngerState standardState = new StandardAngerState();
+    public AngerState angryState = new AngryAngerState();
+
+    private void Awake() => enemyHealth = GetComponent<Health>();
 
     public void Initialise(ObjectPooler pool, Transform playerPos)
     {
         objectPooler = pool;
         player = playerPos;
         currentState = standardState;
-        currentState.EnterState(this);
+        currentState.EnterState(this, enemyHealth);
     }
 
     void Update() => currentState.UpdateState(this);
+
+    public void SwitchState(AngerState newState)
+    {
+        currentState = newState;
+        newState.EnterState(this, enemyHealth);
+    }
 }
