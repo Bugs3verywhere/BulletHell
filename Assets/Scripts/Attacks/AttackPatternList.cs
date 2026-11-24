@@ -5,5 +5,7 @@ public enum AttackPatternList
     Targeted,
     Healing,
     DoubleSpiral,
-    Wall
+    Wall,
+    Random,
+    Ring
 }

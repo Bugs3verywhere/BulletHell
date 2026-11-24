@@ -11,12 +11,14 @@ public class AngryAngerState : AngerState
             new FanAttack(anger.objectPooler, projectileSpeed, 0.25f),
             new DoubleSpiralAttack(anger.objectPooler, projectileSpeed),
             new HealingAttack(anger.objectPooler),
-            new WallAttack(anger.objectPooler, projectileSpeed)
+            new WallAttack(anger.objectPooler, projectileSpeed),
+            new RandomAttack(anger.objectPooler, projectileSpeed),
+            new RingAttack(anger.objectPooler, projectileSpeed, 0.25f)
         };
 
         attackDuration = 0.1f;
-        teleDuration = 1.5f;
-        restDuration = 1.5f;
+        teleDuration = 1f;
+        restDuration = 1f;
         switchDuration = 5f;
 
         healthGate = 250;

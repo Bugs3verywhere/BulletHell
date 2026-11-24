@@ -16,11 +16,11 @@ public class StandardAngerState : AngerState
         };
 
         attackDuration = 0.1f;
-        teleDuration = 1.25f;
+        teleDuration = 1.5f;
         restDuration = 1.5f;
         switchDuration = 2f;
 
-        healthGate = 975;
+        healthGate = 990;
     }
 
     public override void SwitchState(AngerStateManager anger)
